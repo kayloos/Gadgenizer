@@ -3,11 +3,11 @@ require 'spec_helper'
 describe Gadget do
   before(:all) do
     @default_gadget = build(:gadget)
-    user = create(:user)
+    @user = build(:user)
   end
   describe "validations" do
-    before(:each) do
-      @gadget = user << default_gadget
+    before(:all) do
+      @default_gadget.user = @user
     end
 
     it "should be valid when filled out correctly" do
@@ -39,9 +39,9 @@ describe Gadget do
   describe "relations" do
     describe "user" do
       it "should be able to belong to a user" do
-        user << @default_gadget
+        @user << @default_gadget
         @default_gadget.save
-        @default_gadget.user.should == user
+        @default_gadget.user.should == @user
       end
     end
 

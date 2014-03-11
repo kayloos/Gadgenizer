@@ -11,5 +11,6 @@ FactoryGirl.define do
   factory :gadget do
     name "CD Player"
     description "The single greatest modern music player"
+    user
   end
 end
