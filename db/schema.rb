@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311143628) do
+ActiveRecord::Schema.define(version: 20140311172729) do
+
+  create_table "gadget_images", force: true do |t|
+    t.integer  "gadget_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "gadgets", force: true do |t|
     t.string   "name"
@@ -19,6 +29,10 @@ ActiveRecord::Schema.define(version: 20140311143628) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "thumbnail_file_name"
+    t.string   "thumbnail_content_type"
+    t.integer  "thumbnail_file_size"
+    t.datetime "thumbnail_updated_at"
   end
 
   create_table "images", force: true do |t|

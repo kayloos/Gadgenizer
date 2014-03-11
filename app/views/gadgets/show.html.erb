@@ -1,0 +1,19 @@
+<h2>Gadget show</h2>
+
+Name: <%= @gadget.name %><br />
+Description: <%= @gadget.description %><br />
+Owner: <%= @gadget.user.email %><br />
+Image:<br /> <%= image_tag @gadget.thumbnail.url(:cover) %><br />
+
+Additional images:<br />
+
+<% @gadget.gadget_images.each do |gadget_image| %>
+  <%= image_tag gadget_image.image.url(:large) %><br />
+<% end %>
+
+<%= form_for(@gadget_image, :url => add_gadget_image_path, :html => { :multipart => true }) do |f| %>
+  <div><%= f.label :image %><br />
+  <%= f.file_field :image %></div>
+  <div><%= f.submit "Add another image" %></div>
+<% end %>
+

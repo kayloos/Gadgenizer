@@ -8,14 +8,23 @@
 </head>
 <body>
 
-<h1>Welcome to Gadgenizer -- The Gadget Organizer</h1>
+<h1>Gadgenizer</h1>
 
 <% if user_signed_in? %>
-  <%= link_to new_user_session, "Sign in" %>
+  <%= link_to "Gadgets", gadgets_path %>
+  <%= link_to "Sign out", destroy_user_session_path, method: "DELETE" %>
 <% else %>
+  <%= link_to "Sign in", new_user_session_path %>
+  <%= link_to "Sign up", new_user_registration_path %>
 <% end %>
 
-<%= yield %>
+<% flash.each do |key, msg| %>
+  <%= content_tag :div, msg, :id => key %>
+<% end %>
+
+<div id="main">
+  <%= yield %>
+</div>
 
 </body>
 </html>

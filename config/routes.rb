@@ -4,7 +4,15 @@ Gadgenizer::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'welcome#landing'
+
+  get 'gadgets' => 'gadgets#index', :as => :user_root
+
+  resources :gadgets
+
+  get 'gadgetsflow' => 'gadgets#cover_flow_index', :as => :gadgets_cover_flow
+
+  post 'gadgets/:id' => 'gadgets#add_additional_image', :as => :add_gadget_image
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

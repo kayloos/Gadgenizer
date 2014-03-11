@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe User do
+  before(:each) do
+    @user = create(:user)
+  end
+
   describe "validations" do
     describe "email" do
-      before(:each) do
-        @user = build(:user)
-      end
-
       it "should not validate empty email" do
         @user.email = ""
         @user.should_not be_valid
@@ -29,10 +29,6 @@ describe User do
     end
 
     describe "password" do
-      before(:each) do
-        @user = build(:user)
-      end
-
       it "should not accept empty password" do
         @user.password = ""
         @user.should_not be_valid
@@ -62,5 +58,16 @@ describe User do
   end
 
   describe "relations" do
+    before(:each) do
+      @gadget1 = build(:gadget)
+      @gadget2 = build(:gadget)
+    end
+    describe "gadget" do
+      it "should be able to own gadgets" do
+        @user.gadgets << @gadget1
+        @user.gadgets << @gadget2
+        @user.reload.gadgets.should include(@gadget1, @gadget2)
+      end
+    end
   end
 end

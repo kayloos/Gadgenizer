@@ -9,7 +9,9 @@ FactoryGirl.define do
   end
 
   factory :gadget do
-    name "CD Player"
+    sequence :name do |n|
+      "CD Player #{n}"
+    end
     description "The single greatest modern music player"
     user
   end

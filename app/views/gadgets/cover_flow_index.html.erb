@@ -1,0 +1,13 @@
+<%= link_to "Add gadget", new_gadget_path %>, <%= link_to "List view", gadgets_path %><br />
+Index of your gadgets:
+
+<ul>
+<% @gadgets.each do |gadget| %>
+<li>
+  <%= link_to gadget_path(gadget.id) do %>
+    <%= image_tag gadget.thumbnail.url(:cover) %>
+    <%= gadget.name %>
+  <% end %>
+</li>
+<% end %>
+</ul>
